@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 void sort(int arr[], int n)
 {
     int temp = 0;
@@ -21,35 +21,41 @@ void sort(int arr[], int n)
         n = n - 1;
     }
 }
-void main(){
+void main()
+{
     int n;
     printf("Enter Number of Elements\n");
-    scanf("%d",&n);
+    scanf("%d", &n);
     int ar[n];
     printf("Enter the elements\n");
-    for(int i=0;i<n;i++){
-        scanf("%d",&ar[i]);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &ar[i]);
     }
-    sort(ar,n);
+    sort(ar, n);
     int mid;
-    mid=(n+1)/2;
     int a;
     printf("Enter Element to be searched\n");
-    scanf("%d",&a);
-    int searchkey=ar[mid];
-    int low,high;
-    if(searchkey==a){
-        printf("Found at %d ",mid);
-    }
-    else{
-        if(searchkey<a){
-            low=ar[mid+1];
-            high=ar[n];
-            
-            
-           
+    scanf("%d", &a);
+    int low, high;
+    low = 0;
+    high = n - 1;
+    mid = (low + high) / 2;
+    while (low <= high)
+    {
+        if (ar[mid] < a)
+        {
+            low = mid + 1;
         }
+        else if (ar[mid] > a)
+        {
+            high = mid - 1;
+        }
+        else
+        {
+            printf("Element Found at %d", mid+1);
+            break;
+        }
+        mid = (low + high) / 2;
     }
-
-
 }
