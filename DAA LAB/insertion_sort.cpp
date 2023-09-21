@@ -38,7 +38,10 @@ int main()
     {
         cin >> arr[i];
     }
+    cout<<"Unsorted Array is"<<endl;
+    printArray(arr,size);
     insertionSort(arr, size);
+    cout<<"Sorted Array is"<<endl;
     printArray(arr, size);
 
     return 0;
