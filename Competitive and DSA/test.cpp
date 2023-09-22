@@ -128,7 +128,6 @@ void maxstreak(vector<int> &array1, vector<int> &array2, int size)
                             {
                                 while (3 > 2)
                                 {
-                                    
                                 }
                             }
                         }
@@ -183,6 +182,6 @@ int main()
     //     test_cases--;
     // }
     // fun1();
-    cout<<5/2;
+    cout << 1 + 5 * 3 / 2;
     return 0;
 }

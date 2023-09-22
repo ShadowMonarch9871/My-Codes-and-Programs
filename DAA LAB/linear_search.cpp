@@ -15,7 +15,7 @@ int main(void)
 {
 	int arr[] = { 2, 3, 4, 10, 40 };
 	int x = 10;
-	int N = sizeof(arr) / sizeof(arr[0]);
+	int N = 5;
 
 	// Function call
 	int result = search(arr, N, x);
@@ -24,3 +24,4 @@ int main(void)
 		: cout << "Element is present at index " << result;
 	return 0;
 }
+

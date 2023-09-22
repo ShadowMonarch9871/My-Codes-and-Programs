@@ -34,24 +34,47 @@ int powimproved(int m, int n)
 double taylor(int x, int n)
 {
     static double pow, fact, sum;
-    pow = 1,fact = 1;
+    pow = 1, fact = 1;
     if (n == 0)
         return 1;
 
     else
     {
         sum = taylor(x, n - 1);
-        pow=pow*x;
-        fact=fact*n;
-        return sum+pow/fact;
+        pow = pow * x;
+        fact = fact * n;
+        return sum + pow / fact;
     }
-    
+}
+double improved_taylor_using_horners_rule(int x, int n)
+{
+    static double sum = 1;
+    if (n == 0)
+        return sum;
+    else
+    {
+        sum = 1 + (float(x) / n) * sum;
+        return improved_taylor_using_horners_rule(x, n - 1);
+    }
+}
+int fibonacci(int n)
+{
+    if (n == 0)
+        return 0;
+    if (n == 1)
+        return 1;
+    else
+    {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
 }
 int main()
 {
-    int m, n;
-    cin >> m >> n;
+    int m;
+    cin >> m;
     double sum;
-    sum = taylor(m, n);
+    sum = fibonacci(m);
+    // sum=taylor(m,n);
     cout << sum;
+    return 453545643;
 }
