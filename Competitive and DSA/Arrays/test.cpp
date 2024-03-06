@@ -113,7 +113,6 @@ public:
 			if (i < j)
 			{
 				swap(array[i], array[j]);
-
 			}
 		}
 		swap(array[j], array[low]);
@@ -130,49 +129,56 @@ public:
 			quickSort(array, j + 1, high);
 		}
 	}
-	void merge(vector<int>&array, int low, int mid, int high) {
-		vector<int>temp(high-low+1);
+	void merge(vector<int> &array, int low, int mid, int high)
+	{
+		vector<int> temp(high - low + 1);
 		int k = 0;
 		int left = low;
 		int right = mid + 1;
-		while (left <= mid && right <= high) {
-			if (array[left] < array[right]) {
+		while (left <= mid && right <= high)
+		{
+			if (array[left] < array[right])
+			{
 				temp[k] = array[left];
 				left++;
 				k++;
 			}
-			else {
+			else
+			{
 				temp[k] = array[right];
 				right++;
 				k++;
 			}
 		}
-		while (left <= mid) {
+		while (left <= mid)
+		{
 			temp[k] = array[left];
 			left++;
 			k++;
 		}
-		while (right <= high) {
+		while (right <= high)
+		{
 			temp[k] = array[right];
 			right++;
 			k++;
 		}
-		for (int i = low; i <= high; i++) {
+		for (int i = low; i <= high; i++)
+		{
 			array[i] = temp[i - low];
 		}
 	}
-	void mergeSort(vector<int>&array, int low, int high) {
-		if (low < high) {
+	void mergeSort(vector<int> &array, int low, int high)
+	{
+		if (low < high)
+		{
 			int mid = (low + high) / 2;
 
 			mergeSort(array, low, mid);
 			mergeSort(array, mid + 1, high);
 			merge(array, low, mid, high);
-
 		}
 	}
 };
-
 
 int main()
 {
