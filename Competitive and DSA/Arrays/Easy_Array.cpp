@@ -95,24 +95,56 @@ public:
         return sol;
 
     }
+    int missingNumber(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int size = nums.size();
+        int missing;
+        for (int i = 0; i < size; i++) {
+            if (nums[i] != i) {
+                missing = i;
+                break;
+            }
+
+        }
+        return missing;
+    }
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        // sort(nums.begin(), nums.end());
+        int count = 0;
+        int max_count = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == 0) {
+                max_count = max(count, max_count);
+                count = 0;
+            }
+            else if (i == nums.size() - 1 && nums[i] == 1) {
+                count++;
+
+                max_count = max(count, max_count);
+
+            }
+            else count++;
+        }
+        return max_count;
+    }
 };
 
 int main() {
-    // vector<int> v;
-    // int input;
-    // while (cin >> input) {
-    //     v.push_back(input);
-    // }
-    vector<int>a = {1, 2, 3, 4, 6, 7};
-    vector<int>b = {2, 3, 5};
+    vector<int> v;
+    int input;
+    while (cin >> input) {
+        v.push_back(input);
+    }
+    // vector<int>a = {1, 2, 3, 4, 6, 7};
+    // vector<int>b = {2, 3, 5};
 
     Solution ans;
-    int k = 3;
-    vector<int>c = ans.sortedArray(a, b);
 
-    for (auto it : c) {
-        cout << it << " ";
-    }
+    int c = ans.findMaxConsecutiveOnes(v);
+    cout << c;
+    // for (auto it : c) {
+    //     cout << it << " ";
+    // }
     // cout << 8 % 5;
     return 0;
 }
