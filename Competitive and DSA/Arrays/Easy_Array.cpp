@@ -55,14 +55,45 @@ public:
 
     }
     vector < int > sortedArray(vector < int > a, vector < int > b) {
-        int ele = 0;
-        int m = b.size();
-        for (int i= 0; i < m; i++) {
-            ele=b[i];
-            a.push_back(ele);
-        }
+        vector<int>sol;
         sort(a.begin(), a.end());
-        return a;
+        sort(b.begin(), b.end());
+
+        int i = 0, j = 0;
+        while (i < a.size() && j < b.size()) {
+            if ((a[i] <= b[j])) {
+                if (sol.empty() || (sol.back() != a[i])) {
+
+                    sol.emplace_back(a[i]);
+                }
+                i++;
+
+            }
+            else if (a[i] > b[j]) {
+                if (sol.empty() || (sol.back() != b[j])) {
+                    sol.emplace_back(b[j]);
+                }
+                j++;
+
+            }
+        }
+        while (j < b.size()) {
+            if (sol.empty() || (sol.back() != b[j])) {
+                sol.emplace_back(b[j]);
+            }
+            j++;
+
+        }
+        while (i < a.size()) {
+            if (sol.empty() || (sol.back() != a[i])) {
+
+                sol.emplace_back(a[i]);
+            }
+            i++;
+
+        }
+        return sol;
+
     }
 };
 
@@ -72,12 +103,12 @@ int main() {
     // while (cin >> input) {
     //     v.push_back(input);
     // }
-    vector<int>a={1,2,3,4,6};
-    vector<int>b={2,3,5};
+    vector<int>a = {1, 2, 3, 4, 6, 7};
+    vector<int>b = {2, 3, 5};
 
     Solution ans;
     int k = 3;
-    vector<int>c=ans.sortedArray(a,b);
+    vector<int>c = ans.sortedArray(a, b);
 
     for (auto it : c) {
         cout << it << " ";
