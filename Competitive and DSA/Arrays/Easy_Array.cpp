@@ -148,6 +148,27 @@ public:
         return misplace;
 
     }
+    int longestSubarrayWithSumK(vector<int> a, long long k) {
+        int i=0;
+        int j=1;
+        int max_size=0;
+        int size=a.size();
+        int sum=a[0];
+        while(j<size){ 
+            sum=sum+a[j];
+            if(sum<k){
+                j++;
+            }
+            else if(sum==k){
+                max_size=max(max_size,j-i);
+                i++;
+            }
+            else{
+                sum=
+            }
+
+        }
+    }
 };
 
 int main() {
