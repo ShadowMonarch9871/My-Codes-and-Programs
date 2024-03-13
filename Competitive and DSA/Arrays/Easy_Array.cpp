@@ -127,6 +127,27 @@ public:
         }
         return max_count;
     }
+    int singleNumber(vector<int>& nums) {
+        int count = 0;
+        int misplace;
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i < nums.size(); i++) {
+            if ( i != nums.size() - 1 && nums[i] == nums[i + 1] ) {
+                count++;
+
+            }
+            else if (i != nums.size() - 1 && nums[i] != nums[i + 1] && count == 1 ) {
+                count = 0;
+
+            }
+            else if ( i == nums.size() - 1 || (nums[i] != nums[i + 1] && count == 0 ) ) {
+                misplace = nums[i];
+                break;
+            }
+        }
+        return misplace;
+
+    }
 };
 
 int main() {
@@ -140,7 +161,7 @@ int main() {
 
     Solution ans;
 
-    int c = ans.findMaxConsecutiveOnes(v);
+    int c = ans.singleNumber(v);
     cout << c;
     // for (auto it : c) {
     //     cout << it << " ";
