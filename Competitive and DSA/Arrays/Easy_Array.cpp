@@ -153,29 +153,35 @@ public:
         int j = 0;
         int max_size = 0;
         int size = a.size();
-        int sum = 0;
+        long long sum = 0;
         while (j < size) {
+            sum = sum + a[j];
 
             if (sum < k) {
-                sum = sum + a[j];
                 j++;
             }
             else if (sum == k) {
-                max_size = max(max_size, j - i);
-                i++;
-                sum = 0;
+                max_size = max(max_size, j - i + 1);
+                j++;
             }
             else {
-                sum = 0;
-                i++;
+                while (sum > k) {
+                    sum = sum - a[i];
+                    i++;
+                }
+                if (sum == k) {
+                    max_size = max(max_size, j - i +1);
+                }
+                j++;
             }
-
-
         }
+        return max_size;
     }
 };
 
 int main() {
+    long long k;
+    cin>>k;
     vector<int> v;
     int input;
     while (cin >> input) {
@@ -186,7 +192,7 @@ int main() {
 
     Solution ans;
 
-    int c = ans.singleNumber(v);
+    int c = ans.longestSubarrayWithSumK(v,k);
     cout << c;
     // for (auto it : c) {
     //     cout << it << " ";
