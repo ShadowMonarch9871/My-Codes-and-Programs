@@ -155,13 +155,13 @@ public:
         int size = a.size();
         int sum = 0;
         while (j < size) {
+
             if (sum < k) {
                 sum = sum + a[j];
-
                 j++;
             }
             else if (sum == k) {
-                max_size = max(max_size, j - i-1);
+                max_size = max(max_size, j - i);
                 i++;
                 sum = 0;
             }
