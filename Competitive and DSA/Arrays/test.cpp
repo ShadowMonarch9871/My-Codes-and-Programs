@@ -178,17 +178,33 @@ public:
 			merge(array, low, mid, high);
 		}
 	}
+	void countSort(vector<int>&array) {
+		int size = array.size();
+		int max = *max_element(array.begin(), array.end());
+		vector<int>temp(max, 0);
+		for (int i = 0; i < size; i++) {
+			temp[array[i]]++;
+		}
+		int i = 0;
+		while (i < size) {
+			if (temp[i] > 0) {
+				array[i] = temp[i];
+				i++;
+			}
+			else {i++;}
+		}
+	}
 };
 
 int main()
 {
 
 	int result;
-	vector<int> array = {8, 2, 79, 3, 2, 6768};
+	vector<int> array = {8, 2, 7, 3, 2, 6,2,3,1};
 	int size = array.size();
 	Sorting solution;
 
-	solution.mergeSort(array, 0, size - 1);
+	solution.countSort(array);
 	for (auto it : array)
 	{
 		cout << it << " ";

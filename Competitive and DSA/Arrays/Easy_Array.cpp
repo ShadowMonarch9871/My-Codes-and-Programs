@@ -170,18 +170,48 @@ public:
                     i++;
                 }
                 if (sum == k) {
-                    max_size = max(max_size, j - i +1);
+                    max_size = max(max_size, j - i + 1);
                 }
                 j++;
             }
         }
         return max_size;
     }
+    int getLongestSubarray(vector<int>& nums, int k) {
+        int i = 0;
+        int j = 0;
+        int sum = 0;
+        int max_size = 0;
+        int size = nums.size();
+        while (j < size) {
+            sum = sum + nums[j];
+            if (sum < k)j++;
+            else if (sum == k) {
+                max_size = max(max_size, j - i + 1);
+                j++;
+            }
+            else {
+                while (sum > k) {
+                    sum = sum - nums[i];
+                    i++;
+
+                }
+                if (sum == k) {
+                    max_size = max(max_size, j - i + 1);
+
+                }
+                j++;
+
+            }
+        }
+        return max_size;
+    }
+
 };
 
 int main() {
     long long k;
-    cin>>k;
+    cin >> k;
     vector<int> v;
     int input;
     while (cin >> input) {
@@ -192,7 +222,7 @@ int main() {
 
     Solution ans;
 
-    int c = ans.longestSubarrayWithSumK(v,k);
+    int c = ans.getLongestSubarray(v, k);
     cout << c;
     // for (auto it : c) {
     //     cout << it << " ";
