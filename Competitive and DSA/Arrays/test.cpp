@@ -181,18 +181,38 @@ public:
 	void countSort(vector<int>&array) {
 		int size = array.size();
 		int max = *max_element(array.begin(), array.end());
-		vector<int>temp(max, 0);
+		vector<int>temp(max + 1, 0);
 		for (int i = 0; i < size; i++) {
 			temp[array[i]]++;
 		}
 		int i = 0;
+		int j = 0;
 		while (i < size) {
+
 			if (temp[i] > 0) {
-				array[i] = temp[i];
-				i++;
+				array[j++] = i;
+				temp[i]--;
 			}
 			else {i++;}
 		}
+	}
+	void BucketSort(vector<int>&array, int buckets) {
+		int max = *max_element(array.begin(), array.end()) + 1;
+		vector<int> bucket[buckets];
+		for (int i = 0; i < array.size(); i++) {
+			int index = (buckets * array[i]) / max;
+			bucket[index].push_back(array[i])  ;
+		}
+		for (int i = 0; i < buckets; i++) {
+			sort(bucket[i].begin(), bucket[i].end());
+		}
+		int index = 0;
+		for (int i = 0; i < buckets; i++) {
+			for (int j = 0; j < bucket[i].size(); j++) {
+				array[index++] = bucket[i][j];
+			}
+		}
+
 	}
 };
 
@@ -200,11 +220,11 @@ int main()
 {
 
 	int result;
-	vector<int> array = {8, 2, 7, 3, 2, 6,2,3,1};
+	vector<int> array = {30,40,10,80,5,12,70};
 	int size = array.size();
 	Sorting solution;
 
-	solution.countSort(array);
+	solution.BucketSort(array,4);
 	for (auto it : array)
 	{
 		cout << it << " ";

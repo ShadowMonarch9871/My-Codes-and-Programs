@@ -105,7 +105,7 @@ void List()
    }
    auto a = ls.back();
    cout << endl
-      << a;
+        << a;
 }
 
 // deque<int> a is another container which is almost same as list and vector. It supports insertion at front like List and allow random access like a vector.
@@ -296,7 +296,16 @@ void UnorderedMap()
 {
    // Unique keys but not ordered.O(1), worst case O(n).
 }
-
+bool comp(pair<int, int> p1, pair<int, int> p2)
+{
+   if (p1.second < p2.second)
+      return true;
+   if (p2.second < p1.second)
+      return false;
+   if (p1.first < p2.first)
+      return false;
+   return true;
+}
 void extra()
 {
    int a[5];
@@ -325,16 +334,7 @@ void extra()
    int max = *(max_element(a, a + 3)); // Gives address * gives value
 }
 
-bool comp(pair<int, int> p1, pair<int, int> p2)
-{
-   if (p1.second < p2.second)
-      return true;
-   if (p2.second < p1.second)
-      return false;
-   if (p1.first < p2.first)
-      return false;
-   return true;
-}
+
 
 int main()
 {
@@ -347,7 +347,7 @@ int main()
    // Set();
    // Multiset();
    // Unorder();
-   // Map();
+   Map();
    // Multimap();
    // UnorderedMap();
    return 0;
