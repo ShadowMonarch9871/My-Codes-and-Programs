@@ -196,6 +196,31 @@ public:
 			else {i++;}
 		}
 	}
+	void generalcountSort(vector<int>&array) {
+		int size = array.size();
+		int max = *max_element(array.begin(), array.end());
+		vector<int>temp(max + 1, 0);
+		for (int i = 0; i < size; i++) {
+			temp[array[i]]++;
+		}
+		for (int i = 1; i < max+1; i++) {
+			temp[i] = temp[i - 1] + temp[i];
+		}
+		vector<int>output(size);
+		// cout<<temp[4]<<endl;
+
+		for (int i = size - 1; i >= 0; i--) {
+			output[temp[array[i]] - 1]
+			    = array[i];
+			temp[array[i]]--;
+		}
+		for (int i = 0; i < size; i++) {
+			array[i] = output[i];
+		}
+	}
+
+
+
 	void BucketSort(vector<int>&array, int buckets) {
 		int max = *max_element(array.begin(), array.end()) + 1;
 		vector<int> bucket[buckets];
@@ -213,6 +238,7 @@ public:
 			}
 		}
 
+
 	}
 };
 
@@ -220,11 +246,11 @@ int main()
 {
 
 	int result;
-	vector<int> array = {30,40,10,80,5,12,70};
+	vector<int> array = {0, 0, 3, 2, 4, 1};
 	int size = array.size();
 	Sorting solution;
 
-	solution.BucketSort(array,4);
+	solution.generalcountSort(array);
 	for (auto it : array)
 	{
 		cout << it << " ";
