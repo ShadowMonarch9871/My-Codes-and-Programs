@@ -117,6 +117,27 @@ public:
         }
         return max;
     }
+    int maxProfit(vector<int>& prices) {
+        int min1 = prices[0];
+        int Max = 0;
+        //Brute Force
+        // for (int i = 0; i < size; i++) {
+        //     for (int j = i + 1; j < size; j++) {
+        //         if (prices[i] < prices[j] && i != j) {
+        //             max1 = max(max1, prices[j] - prices[i]);
+        //         }
+        //     }
+        // }
+        for (int today = 1; today < prices.size(); today++) {
+            if (prices[today] < min1) {
+                min1 = prices[today];
+            }
+            else {
+                Max = max(Max, prices[today] - min1);
+            }
+        }
+        return Max;
+    }
 };
 
 int main() {
@@ -132,7 +153,7 @@ int main() {
 
     Solution ans;
 
-    int c = ans.maxSubArray(v);
+    int c = ans.maxProfit(v);
     cout << c;
     // for (auto it : c) {
     //     cout << it << " ";
