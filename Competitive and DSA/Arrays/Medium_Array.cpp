@@ -107,7 +107,15 @@ public:
         return candidate;
     }
     int maxSubArray(vector<int>& nums) {
-
+        int size = nums.size();
+        int max = INT_MIN;
+        int sum = 0;
+        for (int i = 0; i < size; i++) {
+            sum += nums[i];
+            if (sum > max)max = sum;
+            if (sum < 0)sum = 0;
+        }
+        return max;
     }
 };
 
@@ -124,7 +132,7 @@ int main() {
 
     Solution ans;
 
-    int c = ans.majorityElement(v);
+    int c = ans.maxSubArray(v);
     cout << c;
     // for (auto it : c) {
     //     cout << it << " ";
