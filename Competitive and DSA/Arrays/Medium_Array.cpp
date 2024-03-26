@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
-// #include <iostream>
-// #include<vector>
-// #include<algorithm>
-// #include<map>
+#include <iostream>
+#include<vector>
+#include<algorithm>
+#include<map>
 using namespace std;
 class Solution {
 public:
@@ -138,12 +138,59 @@ public:
         }
         return Max;
     }
+    vector<int> rearrangeArray(vector<int>& nums) {
+        int size = nums.size();
+        vector<int>temp(size);
+        int pindex = 0;
+        int nindex = 1;
+        for (int i = 0; i < size; i++) {
+            if (nums[i] > 0) {
+                temp[pindex] = nums[i];
+                pindex += 2;
+            }
+            else {
+                temp[nindex] = nums[i];
+                nindex += 2;
+            }
+
+        }
+        return temp;
+
+
+    }
+    void nextPermutation(vector<int>& nums) {
+        int breakpoint = -1;
+        for (int i = nums.size() - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                breakpoint = i ;
+                break;
+            }
+        }
+        cout<<breakpoint<<endl;
+        if (breakpoint == -1) {
+            reverse(nums.begin(), nums.end());
+        }
+        else {
+            for (int i = nums.size()-1; i >breakpoint; i--) {
+                if (nums[i] > nums[breakpoint] && i != breakpoint) {
+                    swap(nums[i], nums[breakpoint]);
+                    break;
+                }
+            }
+            reverse(nums.begin()+breakpoint+1, nums.end());
+        }
+
+
+
+    }
 };
 
 int main() {
     long long k;
     // cin >> k;
     vector<int> v;
+
+
     int input;
     while (cin >> input) {
         v.push_back(input);
@@ -153,11 +200,11 @@ int main() {
 
     Solution ans;
 
-    int c = ans.maxProfit(v);
-    cout << c;
-    // for (auto it : c) {
-    //     cout << it << " ";
-    // }
+    ans.nextPermutation(v);
+    // cout << c;
+    for (auto it : v) {
+        cout << it << " ";
+    }
     // cout << 8 % 5;
     return 0;
 }
