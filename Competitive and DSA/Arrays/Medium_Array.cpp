@@ -166,21 +166,60 @@ public:
                 break;
             }
         }
-        cout<<breakpoint<<endl;
+        cout << breakpoint << endl;
         if (breakpoint == -1) {
             reverse(nums.begin(), nums.end());
         }
         else {
-            for (int i = nums.size()-1; i >breakpoint; i--) {
+            for (int i = nums.size() - 1; i > breakpoint; i--) {
                 if (nums[i] > nums[breakpoint] && i != breakpoint) {
                     swap(nums[i], nums[breakpoint]);
                     break;
                 }
             }
-            reverse(nums.begin()+breakpoint+1, nums.end());
+            reverse(nums.begin() + breakpoint + 1, nums.end());
         }
+    }
+    vector<int> superiorElements(vector<int>&a) {
+        int i = a.size() - 2;
+        int j = a.size() - 1;
+        vector<int>temp;
+        temp.push_back(a[j]);
+        while (i >= 0 && j >= 0) {
+            if (a[i] > a[j]) {
+                temp.push_back(a[i]);
+                j = i;
+                i--;
+            }
+            else {
+                i--;
+            }
+        }
+        sort(temp.begin(), temp.end());
+        return temp;
+    }
+    int longestConsecutive(vector<int>& nums) {
+        unordered_set<int> set;
+        for (auto it : nums) {
+            set.insert(it);
+        }
+        int longestConsecutiveSequence = 0;
+        int currentConsecutiveSequence = 0;
 
+        for (auto it : set) {
 
+            if (set.find(it - 1) == set.end()) {
+                currentConsecutiveSequence = 1;
+                while (set.find(it + 1) != set.end()) {
+                    currentConsecutiveSequence++;
+                    it++;
+                }
+                longestConsecutiveSequence=max(longestConsecutiveSequence,currentConsecutiveSequence);
+
+            }
+
+        }
+        return longestConsecutiveSequence;
 
     }
 };
@@ -199,12 +238,12 @@ int main() {
     // vector<int>b = {2, 3, 5};
 
     Solution ans;
-
-    ans.nextPermutation(v);
-    // cout << c;
-    for (auto it : v) {
-        cout << it << " ";
-    }
+    int sol;
+    sol = ans.longestConsecutive(v);
+    cout << sol;
+    // for (auto it : sol) {
+    //     cout << it << " ";
+    // }
     // cout << 8 % 5;
     return 0;
 }
