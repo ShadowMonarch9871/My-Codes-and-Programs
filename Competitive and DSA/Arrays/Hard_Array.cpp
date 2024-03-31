@@ -7,19 +7,32 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
-        vector<vector<int>>ans(numRows);
-        for (int i = 0; i < numRows; i++) {
-            ans[i].resize(i + 1, 0);
-            for (int j = 0; j <= i; j++) {
-                ans[i][0] = 1;
-                ans[i][i] = 1;
-                if (i >=2&&(j>=1&&j<=i-1)) {
-                    ans[i][j] = ans[i - 1][j - 1] + ans[i - 1][j];
-                }
-            }
+        vector<vector<int>>ans;
+        // for (int i = 0; i < numRows; i++) {
+        //     ans[i].resize(i + 1, 0);
+        //     for (int j = 0; j <= i; j++) {
+        //         ans[i][0] = 1;
+        //         ans[i][i] = 1;
+        //         if (i >=2&&(j>=1&&j<=i-1)) {
+        //             ans[i][j] = ans[i - 1][j - 1] + ans[i - 1][j];
+        //         }
+        //     }
+        // }
+        for(int i=1;i<=numRows;i++){
+            ans.push_back(GenerateRow(i));
         }
         return ans;
 
+    }
+    vector<int>GenerateRow(int Rownumber){
+        vector<int>Row(Rownumber,1);
+        long long ans=1;
+        for(int i=1;i<Rownumber-1;i++){
+            ans=ans*(Rownumber-i);
+            ans=ans/(i);
+            Row[i]=ans;
+        }
+        return Row;
     }
 };
 
