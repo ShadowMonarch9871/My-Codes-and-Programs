@@ -18,21 +18,41 @@ public:
         //         }
         //     }
         // }
-        for(int i=1;i<=numRows;i++){
+        for (int i = 1; i <= numRows; i++) {
             ans.push_back(GenerateRow(i));
         }
         return ans;
 
     }
-    vector<int>GenerateRow(int Rownumber){
-        vector<int>Row(Rownumber,1);
-        long long ans=1;
-        for(int i=1;i<Rownumber-1;i++){
-            ans=ans*(Rownumber-i);
-            ans=ans/(i);
-            Row[i]=ans;
+    vector<int>GenerateRow(int Rownumber) {
+        vector<int>Row(Rownumber, 1);
+        long long ans = 1;
+        for (int i = 1; i < Rownumber - 1; i++) {
+            ans = ans * (Rownumber - i);
+            ans = ans / (i);
+            Row[i] = ans;
         }
         return Row;
+    }
+    vector<int> majorityElement(vector<int>& nums) {
+        map<int, int>Hash;
+        int limit = nums.size() / 3;
+        vector<int>ans;
+        for (int i = 0; i < nums.size(); i++) {
+            if (Hash.find(nums[i]) == Hash.end()) {
+                Hash[nums[i]] = 1;
+            }
+            else {
+                Hash[nums[i]]++;
+            }
+
+        }
+        for (auto it : Hash) {
+            if (it.second > limit) {
+                ans.emplace_back(it.first);
+            }
+        }
+        return ans;
     }
 };
 
@@ -43,10 +63,10 @@ int main() {
 
 
     int input;
-    cin >> input;
-    // while (cin >> input) {
-    //     v.push_back(input);
-    // }
+    // cin >> input;
+    while (cin >> input) {
+        v.push_back(input);
+    }
     // int k = 3;;
 
     // int input;
@@ -62,14 +82,16 @@ int main() {
     // vector<int>b = {2, 3, 5};
 
     Solution ans;
-    vector<vector<int>> sol;
-    sol = ans.generate(input);
+    vector<int> sol;
+    sol = ans.majorityElement(v);
     // cout << sol;
+    // cout << sol.size();
     for (auto it : sol) {
-        for (auto it1 : it) {
-            cout << it1 << " ";
-        }
-        cout << endl;
+        // for (auto it1 : it) {
+        //     cout << it1 << " ";
+        // }
+        cout << it<<" ";
+        // cout << endl;
     }
     // cout << 8 % 5;
     // for (auto it : sol) {
