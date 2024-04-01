@@ -54,6 +54,9 @@ public:
         }
         return ans;
     }
+    vector<vector<int>> threeSum(vector<int>& nums) {
+
+    }
 };
 
 int main() {
@@ -90,7 +93,7 @@ int main() {
         // for (auto it1 : it) {
         //     cout << it1 << " ";
         // }
-        cout << it<<" ";
+        cout << it << " ";
         // cout << endl;
     }
     // cout << 8 % 5;

@@ -18,7 +18,6 @@
 
 //& Promises can have only two values either resolve(res) or reject(rej) states. If resolve then then block and if reject then catch block.
 //! Promise mainly third party ke leye use hota hai ke agar req ho gyi to badiya nahi to rej ho gyi kuch krna padega.
-
 //* Promise in which user will choose a number and if number<5 resolve otherwise reject.
 
 // var ans = new Promise((res, rej) => {
@@ -59,11 +58,32 @@
 
 //^ For using async code we have to use promises which can make the code will become larger due to then to prevent it we can use async await. What it do as both fetch and json are async methods so they will return promises and await allows us to skip writing then statements.
 //& If let ans=raw.json(); without using await it will return promise and no output
-async function abcd() {
-  let raw = await fetch("https://randomuser.me/api/");
-  let ans = await raw.json();
-  console.log(5 + 4);
+// async function abcd() {
+//   let raw = await fetch("https://randomuser.me/api/");
+//   let ans = await raw.json();
+//   console.log(5 + 4);
 
-  console.log(ans);
+//   console.log(ans);
+// }
+// abcd();
+
+//! lets form an async function
+const Timeout = (callback, duration) => {
+  setTimeout(callback, duration);
+};
+
+Timeout(function () {
+  console.log("Ya ho ho ho!!!");
+}, 3000);
+
+//& The above function is using a callback and under the hood setTimeout is used to make the code async
+
+//^ Promisifying the above function
+const PromisifiedTimeOut=(duration)=>{
+  p=new Promise=(res,rej)=>{
+
+  }
+return p;
 }
-abcd();
+
+//* The simple non promisifed async approach doesn't return anything and needs a callback. The promisified approach needs to return something(a promise) and doesn't take any callback.
