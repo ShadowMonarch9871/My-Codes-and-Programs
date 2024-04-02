@@ -55,32 +55,42 @@ public:
         return ans;
     }
     vector<vector<int>> threeSum(vector<int>& nums) {
-        int i = 0;
-        int j = 1;
-        int k = 2;
-        vector<vector<int>> ans;
-        unordered_set<int> s;
-        int sum = 0;
-        int index = 0;
-        for (auto it : nums) {
-            s.insert(it);
-        }
-        while (j < nums.size()) {
-            sum = nums[i] + nums[j];
+        //Brute force approach - Use three loops for i,j and k(three pointer approach) store sum in a set(for unique values) and store set values in ans vector.
 
-            if (s.find(-(sum)) != s.end()) {
-                k = s.find(-(sum));
-                ans[index].emplace_back(nums[i]);
-                ans[index].emplace_back(nums[j]);
-                ans[index].emplace_back(nums[k]);
-                i++;
-                j++;
-                index++;
-            }
-            else {
 
+        //Better approach - Use hashing i.e. sum=nums[i]+nums[j]; look for -(sum) int the set. If it exists then there could be a triplet return it. If don't exist store the nums[j] value in the set. Empty the hash set for every i increment so that there exists one solution for every num[i]
+
+
+        //Optimal approach
+
+        vector<vector<int>>ans;
+       
+        sort(nums.begin(), nums.end());
+        for (i = 0; i < nums.size(); i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            j = i + 1;
+            k = nums.size() - 1;
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+                if (sum < 0) {
+                    j++;
+                }
+                else if (sum > 0) {
+                    k--;
+                }
+                else {
+                    vector<int>temp = {nums[i], nums[j], nums[k]};
+                    ans.push_back(temp);
+                    j++;
+                    k--;
+                    while (j < k && nums[j] == nums[j - 1]) j++;
+                    while (j < k && nums[k] == nums[k + 1]) k++;
+
+                }
             }
+
         }
+        return ans;
     }
 };
 
@@ -111,7 +121,7 @@ int main() {
 
     Solution ans;
     vector<int> sol;
-    sol = ans.majorityElement(v);
+    sol = ans.threeSum(v);
     // cout << sol;
     // cout << sol.size();
     for (auto it : sol) {
