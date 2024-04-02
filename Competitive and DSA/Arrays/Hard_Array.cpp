@@ -55,7 +55,32 @@ public:
         return ans;
     }
     vector<vector<int>> threeSum(vector<int>& nums) {
+        int i = 0;
+        int j = 1;
+        int k = 2;
+        vector<vector<int>> ans;
+        unordered_set<int> s;
+        int sum = 0;
+        int index = 0;
+        for (auto it : nums) {
+            s.insert(it);
+        }
+        while (j < nums.size()) {
+            sum = nums[i] + nums[j];
 
+            if (s.find(-(sum)) != s.end()) {
+                k = s.find(-(sum));
+                ans[index].emplace_back(nums[i]);
+                ans[index].emplace_back(nums[j]);
+                ans[index].emplace_back(nums[k]);
+                i++;
+                j++;
+                index++;
+            }
+            else {
+
+            }
+        }
     }
 };
 
