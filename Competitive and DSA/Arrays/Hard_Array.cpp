@@ -62,36 +62,32 @@ public:
 
 
         //Optimal approach
-
-        vector<vector<int>>ans;
-       
-        sort(nums.begin(), nums.end());
-        for (i = 0; i < nums.size(); i++) {
-            if (i > 0 && nums[i] == nums[i - 1]) continue;
-            j = i + 1;
-            k = nums.size() - 1;
-            while (j < k) {
-                int sum = nums[i] + nums[j] + nums[k];
-                if (sum < 0) {
-                    j++;
-                }
-                else if (sum > 0) {
-                    k--;
-                }
-                else {
-                    vector<int>temp = {nums[i], nums[j], nums[k]};
-                    ans.push_back(temp);
-                    j++;
-                    k--;
-                    while (j < k && nums[j] == nums[j - 1]) j++;
-                    while (j < k && nums[k] == nums[k + 1]) k++;
-
-                }
+       vector<vector<int>>ans;
+       sort(nums.begin(), nums.end());
+       for (int i=0; i < nums.size(); i++) {
+        if(i > 0 && nums[i]==nums[i-1]) continue;
+        int j=i+1;
+        int k = nums.size() - 1;
+        while (j < k) {
+            int sum = nums[i] + nums[j] + nums[k];
+            if (sum < 0) {
+                j++;
             }
-
+            else if (sum > 0) {
+                k--;
+            }
+            else {
+                vector<int>temp = {nums[i], nums[j], nums[k]};
+                ans.push_back(temp);
+                j++;
+                k--;
+                while (j < k && nums[j] == nums[j - 1]) j++;
+                while (j < k && nums[k] == nums[k + 1]) k--;
+            }
         }
-        return ans;
     }
+    return ans;
+}
 };
 
 int main() {
@@ -120,16 +116,16 @@ int main() {
     // vector<int>b = {2, 3, 5};
 
     Solution ans;
-    vector<int> sol;
+    vector<vector<int>> sol;
     sol = ans.threeSum(v);
     // cout << sol;
     // cout << sol.size();
     for (auto it : sol) {
-        // for (auto it1 : it) {
-        //     cout << it1 << " ";
-        // }
-        cout << it << " ";
-        // cout << endl;
+        for (auto it1 : it) {
+            cout << it1 << " ";
+        }
+        // cout << it << " ";
+        cout << endl;
     }
     // cout << 8 % 5;
     // for (auto it : sol) {
