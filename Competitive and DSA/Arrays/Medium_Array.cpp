@@ -348,16 +348,16 @@ public:
         // }
         // return count;
         map<int , int>Map;
-        Map[0]=1;
-        int count=0;
-        int sum=0;
+        Map[0] = 1;
+        int count = 0;
+        int sum = 0;
         for (int i = 0; i < nums.size(); i++) {
-            sum+=nums[i];
-            int remaining=sum-k;
+            sum += nums[i];
+            int remaining = sum - k;
             if (Map.find(remaining) != Map.end()) {
-                count+=Map[sum-k];
-              
-            } 
+                count += Map[sum - k];
+
+            }
             Map[sum]++;
         }
         return count;
@@ -367,40 +367,38 @@ public:
 int main() {
     // long long k;
     // cin >> k;
-    vector<int> v;
 
 
     int input;
     while (cin >> input) {
         v.push_back(input);
     }
-    int k = 3;;
-
-    // int input;
-    // while (std::cin >> input) {
-    //     v.push_back({input});
-    //     char nextChar = std::cin.peek();
-    //     while (nextChar != '\n' && std::cin >> input) {
-    //         v.back().push_back(input);
-    //         nextChar = std::cin.peek();
-    //     }
-    // }
-    // vector<int>a = {1, 2, 3, 4, 6, 7};
-    // vector<int>b = {2, 3, 5};
+    int k = 3;
+// int input;
+// while (std::cin >> input) {
+//     v.push_back({input});
+//     char nextChar = std::cin.peek();
+//     while (nextChar != '\n' && std::cin >> input) {
+//         v.back().push_back(input);
+//         nextChar = std::cin.peek();
+//     }
+// }
+// vector<int>a = {1, 2, 3, 4, 6, 7};
+// vector<int>b = {2, 3, 5};
 
     Solution ans;
     int sol;
-    sol = ans.subarraySum(v, k);
+    sol = ans.getLongestSubarray(v, k);
     cout << sol;
-    // for (auto it : v) {
-    //     for (auto it1 : it) {
-    //         cout << it1 << " ";
-    //     }
-    //     cout << endl;
-    // }
-    // cout << 8 % 5;
-    // for (auto it : sol) {
-    //     cout << it << " ";
-    // }
+// for (auto it : v) {
+//     for (auto it1 : it) {
+//         cout << it1 << " ";
+//     }
+//     cout << endl;
+// }
+// cout << 8 % 5;
+// for (auto it : sol) {
+//     cout << it << " ";
+// }
     return 0;
 }
