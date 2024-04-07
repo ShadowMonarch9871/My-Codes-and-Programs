@@ -80,9 +80,11 @@ Timeout(function () {
 
 //^ Promisifying the above function
 const PromisifiedTimeOut=(duration)=>{
-  p=new Promise=(res,rej)=>{
-
-  }
+  p=new Promise((res,rej)=>{
+ setTimeout(function(){
+  resolve();
+ },duration)
+  })
 return p;
 }
 
