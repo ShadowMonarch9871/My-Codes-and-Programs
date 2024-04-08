@@ -91,26 +91,63 @@ public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
         //Brute force approach - Use four loops to find all possible quartuplets and then find the reqiered ones.
         //Better approach - Find three sum using three loops then look for target - sum in the vector if found good otherwise enter it in a hashset.
+        // int size = nums.size();
+        // set<vector<int>>st;
+        // for (int i = 0; i < size; i++) {
+        //     for (int j = i + 1; j < size; j++) {
+        //         set<long long>hashset;
+        //         for (int k = j + 1; k < size; k++) {
+        //             long long sum = nums[i] + nums[j];
+        //             sum+=nums[k];
+        //             if (hashset.find(target - sum) != hashset.end()) {
+        //                 vector<int>temp = {nums[i], nums[j], nums[k], (int)(target - sum)};
+        //                 sort(temp.begin(), temp.end());
+        //                 st.insert(temp);
+        //             }
+        //             hashset.insert(nums[k]);
+        //         }
+        //     }
+        // }
+        // vector<vector<int>>ans(st.begin(), st.end());
+
+
+        // return ans;
+
+        //Optimal approach - Same as three sum. Have four pointers and add their sum and compare to target.
+        vector<vector<int>>ans;
+        sort(nums.begin(), nums.end());
         int size = nums.size();
-        set<vector<int>>st;
+
         for (int i = 0; i < size; i++) {
+            if (i > 0 && nums[i - 1] == nums[i]) continue;
             for (int j = i + 1; j < size; j++) {
-                set<long long>hashset;
-                for (int k = j + 1; k < size; k++) {
+                if (j != (i + 1) && nums[j - 1] == nums[j]) continue;
+
+                int k = j + 1;
+                int l = size - 1;
+                while (k < l) {
                     long long sum = nums[i] + nums[j];
-                    sum+=nums[k];
-                    if (hashset.find(target - sum) != hashset.end()) {
-                        vector<int>temp = {nums[i], nums[j], nums[k], (int)(target - sum)};
-                        sort(temp.begin(), temp.end());
-                        st.insert(temp);
+                    sum += nums[k] + nums[l];
+                    if (sum == target) {
+                        vector<int>temp = {nums[i], nums[j], nums[k], nums[l]};
+                        ans.push_back(temp);
+                        l--;
+                        k++;
+
+
+                        while (k < l && nums[l + 1] == nums[l])l--;
+                        while (k < l && nums[k - 1] == nums[k])k++;
+
                     }
-                    hashset.insert(nums[k]);
+                    else if (sum < target) {
+                        k++;
+                    }
+                    else {
+                        l--;
+                    }
                 }
             }
         }
-        vector<vector<int>>ans(st.begin(), st.end());
-
-
         return ans;
     }
 };
@@ -118,7 +155,7 @@ public:
 int main() {
     vector<int> v;
     int input;
-    
+
     while (cin >> input) {
         v.push_back(input);
     }
@@ -132,13 +169,13 @@ int main() {
     // }
     Solution ans;
     vector<vector<int>> sol;
-    sol = ans.fourSum(v,0);
+    sol = ans.fourSum(v, 0);
     for (auto it : sol) {
         for (auto it1 : it) {
             cout << it1 << " ";
         }
         cout << endl;
     }
-    
+
     return 0;
 }
