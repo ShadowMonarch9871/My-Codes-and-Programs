@@ -86,4 +86,4 @@ const PromisifiedTimeOut=(duration)=>{
 return p;
 }
 
-//* The simple non promisifed async approach doesn't return anything and needs a callback. The promisified approach needs to return something(a promise) and doesn't take any callback.
+//* The simple non promisifed async approach doesn't return anything and needs a callback. The promisified approach needs to return something(a promise) and doesn't take any callback
