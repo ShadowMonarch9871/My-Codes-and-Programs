@@ -150,7 +150,28 @@ public:
         }
         return ans;
     }
-};
+    int getLongestZeroSumSubarrayLength(vector<int> &arr) {
+        int sum = 0;
+        int length = 0;
+        for (int i = 0; i < arr.size(); i++) {
+            sum = 0;
+            int count = 0;
+            for (int j = i; j < arr.size(); j++) {
+                {
+                    sum = sum + arr[j];
+                    count++;
+                    if (sum == 0) {
+                        length = max(length, count);
+                    }
+                }
+            }
+            sum = 0;
+            count = 0;
+        }
+        return length;
+    }
+}
+;
 
 int main() {
     vector<int> v;
@@ -168,14 +189,8 @@ int main() {
     //     }
     // }
     Solution ans;
-    vector<vector<int>> sol;
-    sol = ans.fourSum(v, 0);
-    for (auto it : sol) {
-        for (auto it1 : it) {
-            cout << it1 << " ";
-        }
-        cout << endl;
-    }
-
+    int sol;
+    sol = ans.getLongestZeroSumSubarrayLength(v);
+    cout << sol;
     return 0;
 }
