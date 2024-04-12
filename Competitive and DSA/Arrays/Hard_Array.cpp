@@ -170,10 +170,48 @@ public:
         //     count = 0;
         // }
         // return length;
-        
+        unordered_map<int, int>mp;
+        int sum = 0;
+        int maxi = 0;
+        for (int i = 0; i < arr.size(); i++) {
+            sum += arr[i];
+            if (sum == 0) {
+                maxi = i + 1;
+            }
+            else {
+                if (mp.find(sum) != mp.end()) {
+                    maxi = max(maxi, i - mp[sum]);
+                }
+                else {
+                    mp[sum] = i;
+                }
+            }
+        }
+        return maxi;
     }
-}
-;
+    int subarraysWithSumK(vector < int > a, int b) {
+        int count = 0;
+        int maxcount = 0;
+        int xorr = 0;
+        unordered_map<int, int>mp;
+        for (int i = 0; i < a.size(); i++) {
+            xorr ^= a[i];
+            if (xorr == b) {
+                count+=1;
+            }
+            else {
+                if (mp.find(xorr) != mp.end()) {
+                    maxcount = max(maxcount, i - mp[xorr]);
+                }
+                else {
+                    mp[xorr] = i;
+                }
+            }
+        }
+        return maxcount;
+    }
+};
+
 
 int main() {
     vector<int> v;
@@ -192,7 +230,7 @@ int main() {
     // }
     Solution ans;
     int sol;
-    sol = ans.getLongestZeroSumSubarrayLength(v);
+    sol = ans.subarraysWithSumK(v, 2);
     cout << sol;
     return 0;
 }
