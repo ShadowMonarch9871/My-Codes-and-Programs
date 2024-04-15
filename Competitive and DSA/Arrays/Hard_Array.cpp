@@ -197,18 +197,17 @@ public:
         for (int i = 0; i < a.size(); i++) {
             xorr ^= a[i];
             if (xorr == b) {
-                count+=1;
+                count++;
             }
             else {
-                if (mp.find(xorr) != mp.end()) {
-                    maxcount = max(maxcount, i - mp[xorr]);
+                if (mp.find(xorr ^ b) != mp.end()) {
+                    count += mp[xorr ^ b];
                 }
-                else {
-                    mp[xorr] = i;
-                }
+
+                mp[xorr]++;
             }
         }
-        return maxcount;
+        return count;
     }
 };
 
