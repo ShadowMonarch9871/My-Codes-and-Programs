@@ -193,43 +193,51 @@ public:
         int count = 0;
         int maxcount = 0;
         int xorr = 0;
-        unordered_map<int, int>mp;
+        map<int, int>mp;
+        mp[xorr]++;
         for (int i = 0; i < a.size(); i++) {
             xorr ^= a[i];
-            if (xorr == b) {
-                count++;
-            }
-            else {
-                if (mp.find(xorr ^ b) != mp.end()) {
-                    count += mp[xorr ^ b];
-                }
-
-                mp[xorr]++;
-            }
+            int x = xorr ^ b;
+            count += mp[x];
+            mp[xorr]++;
         }
         return count;
     }
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        sort(intervals.begin(), intervals.end());
+        vector < vector<int >> ans;
+        for (int i = 0; i < intervals.size() - 1; i++) {
+            if (intervals[i][1] >= intervals[i + 1][0]) {
+                intervals[i][1] = intervals[i + 1][0];
+                intervals.erase(intervals.begin() + i + 1);
+            }
+        }
+        return intervals;
+    }
 };
 
-
 int main() {
-    vector<int> v;
+    vector<vector<int>> v;
     int input;
 
-    while (cin >> input) {
-        v.push_back(input);
-    }
-    // while (std::cin >> input) {
-    //     v.push_back({input});
-    //     char nextChar = std::cin.peek();
-    //     while (nextChar != '\n' && std::cin >> input) {
-    //         v.back().push_back(input);
-    //         nextChar = std::cin.peek();
-    //     }
+    // while (cin >> input) {
+    //     v.push_back(input);
     // }
+    while (std::cin >> input) {
+        v.push_back({input});
+        char nextChar = std::cin.peek();
+        while (nextChar != '\n' && std::cin >> input) {
+            v.back().push_back(input);
+            nextChar = std::cin.peek();
+        }
+    }
     Solution ans;
-    int sol;
-    sol = ans.subarraysWithSumK(v, 2);
-    cout << sol;
+    vector<vector<int>> sol;
+    sol = ans.merge(v);
+    for (auto it : v) {
+        for (auto it1 : it) {
+            cout << it1 << " ";
+        }
+    }
     return 0;
 }
