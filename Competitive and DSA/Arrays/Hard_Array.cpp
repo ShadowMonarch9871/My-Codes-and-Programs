@@ -206,13 +206,16 @@ public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         sort(intervals.begin(), intervals.end());
         vector < vector<int >> ans;
-        for (int i = 0; i < intervals.size() - 1; i++) {
-            if (intervals[i][1] >= intervals[i + 1][0]) {
-                intervals[i][1] = intervals[i + 1][0];
-                intervals.erase(intervals.begin() + i + 1);
+        int size = intervals.size();
+        for (int interval = 0; interval < size; interval++) {
+            if (ans.empty() || intervals[interval][0] > ans.back()[1]) {
+                ans.push_back(intervals[interval]);
+            }
+            else {
+                ans.back()[1] = max(ans.back()[1], intervals[interval][1]);
             }
         }
-        return intervals;
+        return ans;
     }
 };
 
@@ -234,10 +237,11 @@ int main() {
     Solution ans;
     vector<vector<int>> sol;
     sol = ans.merge(v);
-    for (auto it : v) {
+    for (auto it : sol) {
         for (auto it1 : it) {
             cout << it1 << " ";
         }
+        cout << endl;
     }
     return 0;
 }
