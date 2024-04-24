@@ -83,15 +83,15 @@ for (let element in arr){
 for (let element of arr){
   console.log(element)
 }
-//!for each loop can do an action for every element
-arr.forEach((element, index) => {
+//!for each loop can do an action for every element but that action result is not saved in original array.
+arr.forEach((element, index,array) => {
   //callback function-> function inside a function
   console.log(`${element} present at ${index}`);
 });
 
 // !Map
 var arr = ["p1", "p2", "p3", 1, true];
-arr.forEach((element, index) => {
+arr.forEach((element, index,array) => {
   //callback function-> function inside a function
   console.log(`${element} present at ${index}`);
 });
@@ -99,14 +99,14 @@ arr.map((element, index) => {
   console.log(`${element} present at ${index}`);
 });
 
-// !for each performs operations on same array while map form a new array and do operations on these also map in unchainable
-let num = arr.map((e) => {
-  return e > 2;//compare each element of arr as whether they are > 2 or not.
-});
+//! for each performs operations on same array while map form a new array and do operations on these also map is unchainable
+// let num = arr.map((e) => {
+//   return e > 2;//compare each element of arr as whether they are > 2 or not.
+// });
 console.log(arr)
 console.log(num)
 
-reduce
+// reduce
 arr = [1, 2, 3, 4, 5, 6];
 let num = arr.reduce((accumulator, element) => {
   return (accumulator += element);//sum
@@ -146,8 +146,8 @@ console.log(emo1);
 [emo1, emo2,...unwanted] = ["smiling", "crying","hello",1,2];
 console.log(unwanted)
 //This is spread operator
-let arr1=["Hello",1,2,3,...emojiArray]
-console.log(arr1)
+// let arr1=["Hello",1,2,3,...emojiArray]
+// console.log(arr1)
 let tech = "team";
 let obj = {
   [tech]: "Software",//Square brackets make tech dynamic i.e. the o/p is team: 'Software' and without it is tech: 'Software'
@@ -167,7 +167,7 @@ arr2 = a1.filter((element) => {
   return element > 8;
 });
 console.log(arr2);
-// Use filter when You want to store some particular elements and map when you want to perform some specific operations and store the values. For each won't return the values that'w why then can't be stored in another array
+// Use filter when You want to store some particular elements and map when you want to perform some specific operations and store the values. For each won't return the values that'w why they can't be stored in another array
 
 // Chaining implementing a chain of functions
 a1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

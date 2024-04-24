@@ -217,6 +217,27 @@ public:
         }
         return ans;
     }
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int p1, p2;
+        p1 = m - 1;
+        p2 = m;
+        int size1 = nums1.size();
+        int size2 = nums2.size();
+        for (int i = m; i < size1; i++) {
+            nums1[i] = nums2[i - n];
+        }
+        while (p1 >= 0 || p2 < size1) {
+            if (nums1[p1] > nums1[p2]) {
+                swap(nums1[p1], nums1[p2]);
+                p1--;
+                p2++;
+            }
+            else {
+                p1--;
+                p2++;
+            }
+        }
+    }
 };
 
 int main() {
