@@ -67,6 +67,26 @@
 // }
 // abcd();
 
+//! Using .then() Here see that .then nested here just like do one thing then do other thing after that do another thing then another and so on.... This is callback hell(nested)
+// fetch('https://randomuser.me/api/')
+//   .then(response => response.json())
+//   .then(data => {
+//     console.log(data);
+//     // More code here...
+//   });
+
+//^ Using async/await Here see the logic I don't care what you are doing and how many time you are doing I just want the answer so if you have the answer then give me else wait till you get the answer.
+
+
+//* Also this is much more clean to look then a nested .then . This is a asynchronous code that looks like a synchronous code 
+// async function fetchData() {
+//   let response = await fetch('https://randomuser.me/api/');
+//   let data = await response.json();
+//   console.log(data);
+//   // More code here...
+// }
+// fetchData();
+
 //! lets form an async function
 const Timeout = (callback, duration) => {
   setTimeout(callback, duration);

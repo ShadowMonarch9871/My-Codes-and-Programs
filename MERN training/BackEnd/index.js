@@ -1,3 +1,6 @@
+//! ECMAScript is the scripting language specification for JavaScript standard.
+//^ JavaScript is a scripting language that conforms to the ECMAScript specifications.
+//& Chrome and Chromium uses V8 Engine which is developed by google using C++ to compile/translate js. Firefox uses SpiderMonkey which is made using C and Rust.
 // !Modules
 //*Built in
 //*Local
