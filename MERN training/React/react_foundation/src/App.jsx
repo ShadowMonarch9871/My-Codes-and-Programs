@@ -10,7 +10,10 @@ const App = () => {
 
   return (
     <div>
-      <Button count={count} setCount={setCount}></Button>
+      {/* <Button count={count} setCount={setCount}></Button> */}
+      <button onClick={()=>setCount((count)=> count+1)}>
+        Count is {count}
+      </button>
     </div>
   );
 };
