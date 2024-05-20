@@ -223,27 +223,19 @@ public:
         p2 = m;
         int size1 = nums1.size();
         int size2 = nums2.size();
-        for (int i = m; i < size1; i++) {
-            nums1[i] = nums2[i - n];
+        for (int i = 0; i < size2; i++) {
+            nums1[m + i] = nums2[i];
         }
-        while (p1 >= 0 || p2 < size1) {
-            if (nums1[p1] > nums1[p2]) {
-                swap(nums1[p1], nums1[p2]);
-                p1--;
-                p2++;
-            }
-            else {
-                p1--;
-                p2++;
-            }
-        }
+        sort(nums1.begin(), nums.end());
     }
 };
 
 int main() {
-    vector<vector<int>> v;
+    vector<int> v;
+    vector<int> v1;
     int input;
-
+    int n = 3;
+    int m = 3;
     // while (cin >> input) {
     //     v.push_back(input);
     // }
@@ -251,18 +243,26 @@ int main() {
         v.push_back({input});
         char nextChar = std::cin.peek();
         while (nextChar != '\n' && std::cin >> input) {
-            v.back().push_back(input);
+            v.push_back(input);
+            nextChar = std::cin.peek();
+        }
+    }
+    while (std::cin >> input) {
+        v.push_back({input});
+        char nextChar = std::cin.peek();
+        while (nextChar != '\n' && std::cin >> input) {
+            v1.push_back(input);
             nextChar = std::cin.peek();
         }
     }
     Solution ans;
     vector<vector<int>> sol;
-    sol = ans.merge(v);
-    for (auto it : sol) {
-        for (auto it1 : it) {
-            cout << it1 << " ";
-        }
-        cout << endl;
+    ans.merge(v, m, v1, n);
+    for (auto it : v) {
+        cout << it << " ";
+        cout << "fdsfd ";
+
+        // cout << endl;
     }
     return 0;
 }
