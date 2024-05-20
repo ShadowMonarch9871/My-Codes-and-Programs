@@ -217,16 +217,46 @@ public:
         }
         return ans;
     }
-    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-        int p1, p2;
-        p1 = m - 1;
-        p2 = m;
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n)  {
+
         int size1 = nums1.size();
         int size2 = nums2.size();
-        for (int i = 0; i < size2; i++) {
-            nums1[m + i] = nums2[i];
+        if (n != 0 && m != 0) {
+            for (int i = 0; i < size2; i++) {
+                nums1[m + i] = nums2[i];
+            } sort(nums1.begin(), nums1.end());
         }
-        sort(nums1.begin(), nums.end());
+        if (m == 0) {
+            for (int i = 0; i < size2; i++) {
+                nums1[m + i] = nums2[i];
+            }
+            sort(nums1.begin(), nums1.end());
+        }
+        if (n == 0) {
+            sort(nums1.begin(), nums1.end());
+        }
+    }
+    vector<int> findTwoElement(vector<int> arr, int n) {
+        sort(arr.begin(), arr.end());
+        vector<int> ans;
+        long long size = arr.size();
+        long long missing = 0;
+        long long repeated = 0;
+        for (int i = 1; i < size; i++) {
+            if (arr[i] == arr[i - 1]) {
+                repeated = arr[i];
+                break;
+            }
+        }
+        long long sum = (size * (size + 1)) / 2;
+        long long arrSum = 0;
+        for (int i = 0; i < size; i++) {
+            arrSum += arr[i];
+        }
+        missing = sum - arrSum + repeated;
+        ans.push_back((int)repeated);
+        ans.push_back((int)missing);
+        return ans;
     }
 };
 
