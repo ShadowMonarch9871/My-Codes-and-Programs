@@ -258,6 +258,87 @@ public:
         ans.push_back((int)missing);
         return ans;
     }
+
+    long long merge(vector<long long> &array, int low, int mid, int high)
+    {
+        vector<long long> temp(high - low + 1);
+        int k = 0;
+        int left = low;
+        int right = mid + 1;
+        long long count = 0;
+        while (left <= mid && right <= high)
+        {
+            if (array[left] < array[right])
+            {
+                temp[k] = array[left];
+                left++;
+                k++;
+            }
+            else
+            {
+                temp[k] = array[right];
+                count += (mid - left + 1);
+                right++;
+                k++;
+            }
+        }
+        while (left <= mid)
+        {
+            temp[k] = array[left];
+            left++;
+            k++;
+        }
+        while (right <= high)
+        {
+            temp[k] = array[right];
+            right++;
+            k++;
+        }
+        for (int i = low; i <= high; i++)
+        {
+            array[i] = temp[i - low];
+        }
+        return count;
+    }
+
+
+    long long mergeSort(vector<long long>&vec, int low, int high) {
+        long long count = 0;
+        if (low >= high)return count;
+        int mid = (low + high) / 2;
+        count += mergeSort(vec, low, mid);
+        count += mergeSort(vec, mid + 1, high);
+        count += merge(vec, low, mid, high);
+
+        return count;
+    }
+
+
+    long long int inversionCount(long long arr[], long long N)
+    {
+        vector<long long>temp;
+        for (int i = 0; i < N; i++ ) {
+            temp.push_back(arr[i]);
+        }
+        return mergeSort(temp, 0, N - 1);
+    }
+    int reversePairs(vector<int>& nums) {
+        int count=0;
+        int i=0;
+        int j=1;
+        while(i<nums.size()-1){
+            if(j==nums.size()-1){
+                i=i+1;
+                j=i+1;
+            }
+            if(nums[i]>2*nums[j]){
+                count++;
+                j++;
+            }
+            else j++;
+        }
+        return count;
+    }
 };
 
 int main() {
@@ -266,33 +347,33 @@ int main() {
     int input;
     int n = 3;
     int m = 3;
-    // while (cin >> input) {
-    //     v.push_back(input);
+    while (cin >> input) {
+        v.push_back(input);
+    }
+    // while (std::cin >> input) {
+    //     v.push_back({input});
+    //     char nextChar = std::cin.peek();
+    //     while (nextChar != '\n' && std::cin >> input) {
+    //         v.push_back(input);
+    //         nextChar = std::cin.peek();
+    //     }
     // }
-    while (std::cin >> input) {
-        v.push_back({input});
-        char nextChar = std::cin.peek();
-        while (nextChar != '\n' && std::cin >> input) {
-            v.push_back(input);
-            nextChar = std::cin.peek();
-        }
-    }
-    while (std::cin >> input) {
-        v.push_back({input});
-        char nextChar = std::cin.peek();
-        while (nextChar != '\n' && std::cin >> input) {
-            v1.push_back(input);
-            nextChar = std::cin.peek();
-        }
-    }
+    // while (std::cin >> input) {
+    //     v.push_back({input});
+    //     char nextChar = std::cin.peek();
+    //     while (nextChar != '\n' && std::cin >> input) {
+    //         v1.push_back(input);
+    //         nextChar = std::cin.peek();
+    //     }
+    // }
     Solution ans;
-    vector<vector<int>> sol;
-    ans.merge(v, m, v1, n);
-    for (auto it : v) {
-        cout << it << " ";
-        cout << "fdsfd ";
+    int Sol=ans.reversePairs(v);
+    cout<<Sol;
+    // for (auto it : v) {
+    //     cout << it << " ";
+    //     cout << "fdsfd ";
 
-        // cout << endl;
-    }
+    //     // cout << endl;
+    // }
     return 0;
 }
