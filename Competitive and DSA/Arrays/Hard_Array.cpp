@@ -365,7 +365,7 @@ int main() {
     //         v1.push_back(input);
     //         nextChar = std::cin.peek();
     //     }
-    // }
+    // }R
     Solution ans;
     int Sol=ans.reversePairs(v);
     cout<<Sol;
