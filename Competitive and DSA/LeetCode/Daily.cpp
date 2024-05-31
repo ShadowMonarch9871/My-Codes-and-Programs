@@ -43,8 +43,69 @@ public:
 			i++;
 		}
 		return count;
-
 	}
+	int equalSubstring(string s, string t, int maxCost) {
+		// int count = 0;
+		// int tempCount = 0;
+		// int i = 0;
+		// int j = 0;
+		// int cost = 0;
+		// while (i < s.length() && j < s.length()) {
+		// 	if (cost + abs(s[j] - t[j]) <= maxCost) {
+		// 		tempCount++;
+		// 		cost = cost + abs(s[j] - t[j]);
+		// 		j++;
+		// 	}
+		// 	else {
+		// 		cost = 0;
+		// 		i++;
+		// 		j = i;
+		// 		count = max(count, tempCount);
+		// 		tempCount = 0;
+		// 	}
+		// }
+		// count = max(count, tempCount);
+
+		// return count;
+		int n = s.length();
+		vector<int> cumulativeCost(n, 0);
+
+		cumulativeCost[0] = abs(s[0] - t[0]);
+		for (int i = 1; i < n; ++i) {
+			cumulativeCost[i] = cumulativeCost[i - 1] + abs(s[i] - t[i]);
+		}
+
+		int maxLen = 0;
+		int left = 0;
+		for (int right = 0; right < n; ++right) {
+			if (cumulativeCost[right] - (left > 0 ? cumulativeCost[left - 1] : 0) <= maxCost) {
+				maxLen = max(maxLen, right - left + 1);
+			} else {
+				++left;
+			}
+		}
+
+		return maxLen;
+	}
+	vector<int> singleNumber(vector<int>& nums) {
+        map<int,int>mp;
+        for(auto it:nums){
+            if(mp.find(it)!=mp.end()){
+                mp[it]++;
+            }
+            else{
+                mp[it]=1;
+            }
+        }
+        vector<int>ans;
+        for(auto &it:mp){
+            if(it.second==1){
+                ans.push_back(it.first);
+            }
+        }
+        return ans;
+    }
+
 };
 int main() {
 	vector<int>v;
@@ -55,13 +116,16 @@ int main() {
 	int k = 1;
 	// cin >> k;
 	Solution sol;
-	int ans = sol.beautifulSubsets(v, k);
-	cout << ans << endl;
-	for (auto it : sol.arrays) {
-		for (auto it1 : it) {
-			cout << it1;
-		}
-		cout << endl;
+	vector<int> ans = sol.singleNumber(v);
+	// cout << ans << endl;
+	for (auto it : ans) {
+		cout << it<<" ";
 	}
+	// for (auto it : sol.arrays) {
+	// 	for (auto it1 : it) {
+	// 		cout << it1;
+	// 	}
+	// 	cout << endl;
+	// }
 
 }

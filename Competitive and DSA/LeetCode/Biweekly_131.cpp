@@ -36,35 +36,33 @@ public:
 		return ans;
 
 	}
-	void queryResults(int limit, vector<vector<int>>& queries) {
-        vector<int> ans;
-        unordered_map<int, int> mp;
-        unordered_set<int> s;
-        for (auto query : queries) {
-            if (mp.find(query[0]) != mp.end()) {
-                int prevColor = mp[query[0]];
-                if (prevColor != 0) {
-                    cout << "Previous color is " << prevColor << " ";
-                    s.erase(prevColor);
-                }
-                mp[query[0]] = query[1];
-                s.insert(query[1]);
-                ans.push_back(s.size());
-                for (auto it : s) {
-                    cout << it << " ";
-                }
-                cout << endl;
-            } else {
-                mp[query[0]] = query[1];
-                s.insert(query[1]);
-                ans.push_back(s.size());
-                for (auto it : s) {
-                    cout << it << " ";
-                }
-                cout << endl;
-            }
-        }
-    }
+	vector<int> queryResults(int limit, vector<vector<int>>& queries) {
+		vector<int> ans;
+		unordered_map<int, int> mp;
+		unordered_map<int, int> colorCount;
+		unordered_set<int> s;
+
+		for (auto& query : queries) {
+			int ball = query[0];
+			int color = query[1];
+
+			if (mp.find(ball) != mp.end()) {
+				int prevColor = mp[ball];
+				colorCount[prevColor]--;
+				if (colorCount[prevColor] == 0) {
+					s.erase(prevColor);
+				}
+			}
+
+			mp[ball] = color;
+			colorCount[color]++;
+			s.insert(color);
+
+			ans.push_back(s.size());
+		}
+
+		return ans;
+	}
 
 };
 int main() {
@@ -74,7 +72,7 @@ int main() {
 	// 	array.push_back(input);
 	// }
 	Solution sol;
-	vector<vector<int>>queries = {{0, 1} , {1, 4} , {1, 1} , {1, 4},{1,1}};
+	vector<vector<int>>queries = {{0, 1} , {1, 4} , {1, 1} , {1, 4}, {1, 1}};
 	int x = 4;
 	// vector<int> Ans =
 	sol.queryResults(x, queries);
