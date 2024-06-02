@@ -88,38 +88,47 @@ public:
 		return maxLen;
 	}
 	vector<int> singleNumber(vector<int>& nums) {
-        map<int,int>mp;
-        for(auto it:nums){
-            if(mp.find(it)!=mp.end()){
-                mp[it]++;
-            }
-            else{
-                mp[it]=1;
-            }
-        }
-        vector<int>ans;
-        for(auto &it:mp){
-            if(it.second==1){
-                ans.push_back(it.first);
-            }
-        }
-        return ans;
-    }
+		map<int, int>mp;
+		for (auto it : nums) {
+			if (mp.find(it) != mp.end()) {
+				mp[it]++;
+			}
+			else {
+				mp[it] = 1;
+			}
+		}
+		vector<int>ans;
+		for (auto &it : mp) {
+			if (it.second == 1) {
+				ans.push_back(it.first);
+			}
+		}
+		return ans;
+	}
+	void reverseString(vector<char>& s) {
+		int low = 0;
+		int high = s.size()-1;
+		while (low < high) {
+			swap(s[low], s[high]);
+			low++;
+			high--;
+		}
+	}
 
 };
 int main() {
-	vector<int>v;
-	int input;
+	vector<char>v;
+	char input;
 	while (cin >> input) {
 		v.push_back(input);
 	}
 	int k = 1;
 	// cin >> k;
 	Solution sol;
-	vector<int> ans = sol.singleNumber(v);
+	sol.reverseString(v);
 	// cout << ans << endl;
-	for (auto it : ans) {
-		cout << it<<" ";
+	for (auto it : v) {
+		cout << it << " ";
 	}
 	// for (auto it : sol.arrays) {
 	// 	for (auto it1 : it) {
