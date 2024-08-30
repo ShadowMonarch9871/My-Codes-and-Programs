@@ -6,24 +6,11 @@ using namespace std;
 
 class Solution {
 public:
-    int largestEvenSumSubarraySize(std::vector<int>& arr) {
-    int n = arr.size();
-    int maxCount = 0;   
-    int currentSum = 0; 
-    for (int i = 0; i < n; ++i) {
-        currentSum = 0; 
-
-        for (int j = i; j < n; ++j) {
-            currentSum += arr[j];
-
-            if (currentSum % 2 == 0) {
-                maxCount = std::max(maxCount, j - i + 1);
-            }
-        }
+    int spellSpice(pair<int,int>p){
+        int max1=0;
+        int max2=0;
+        for(int i=)
     }
-
-    return maxCount;
-}
 };
 
 int main() {
