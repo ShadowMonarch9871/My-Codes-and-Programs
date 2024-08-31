@@ -1,4 +1,4 @@
-// #include<bits/stdc++.h>
+#include<bits/stdc++.h>
 #include <iostream>
 #include<vector>
 #include<algorithm>
@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
 public:
     void swap(int &num1, int &num2)
-    {
+    {   
         int temp = num1;
         num1 = num2;
         num2 = temp;
@@ -206,7 +206,22 @@ public:
         }
         return max_size;
     }
+    int print2largest(vector<int> &arr) {
+        int largest = arr[0];
+        int second_largest = INT_MIN;
+        for (auto it : arr) {
+            if (it > largest ) {
+                second_largest=largest;
+                largest=it;
+           }
+           else if (it > second_largest && it < largest) {
+                second_largest = it;
+            }
+        }
+        if (largest == second_largest) return -1;
+        else return second_largest;
 
+    }
 };
 
 int main() {
@@ -222,7 +237,7 @@ int main() {
 
     Solution ans;
 
-    int c = ans.getLongestSubarray(v, k);
+    int c = ans.print2largest(v);
     cout << c;
     // for (auto it : c) {
     //     cout << it << " ";
