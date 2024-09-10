@@ -182,6 +182,6 @@ int main()
     //     test_cases--;
     // }
     // fun1();
-    cout << 1 + 5 * 3 / 2;
+    cout << 21;
     return 0;
 }
