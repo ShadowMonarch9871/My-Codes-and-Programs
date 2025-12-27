@@ -1,0 +1,14 @@
+Node jsis an open source js runtime environment, based on chrome V8 engine.
+Written in c,c++,js.
+Cross Platform adn highly extensible programming platform.
+Purpose is to execute JS code outside the web browser
+Due to V8 engine processing time reduced
+Uses single thread concept.
+Non synchronous
+Event driven, always listen to main loop events, after that trigger callback function so that it doesn't block the execution.
+
+Read data from source and write to destination with the help of stream.
+
+Working of Http1 - Client sends req to the server, browser process it initially and then generate a sep req to fetch the data from the server. This is not good cuz user has to wait for long time while the browser parses the res, which lead to increase the load time and dec the performance of the application.
+
+Working of Http2 - It has push capabilities, with the help of push capabilities the server can send the assests to the browser initially, thus improving performance.
